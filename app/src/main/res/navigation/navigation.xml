@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation" app:startDestination="@id/homeFragment">
+
+    <fragment android:id="@+id/homeFragment"
+              android:name="com.hyperclock.prashant.credentialmanager.homeScreen.HomeFragment"
+              android:label="HomeFragment">
+        <action android:id="@+id/action_homeFragment_to_newCredentialFragment"
+                app:destination="@id/newCredentialFragment"/>
+        <action android:id="@+id/action_homeFragment_to_helpFragment" app:destination="@id/helpFragment"/>
+        <action android:id="@+id/action_homeFragment_to_settingFragment" app:destination="@id/settingFragment"/>
+        <action android:id="@+id/action_homeFragment_to_newCredentialFragment2"
+                app:destination="@id/newCredentialFragment"/>
+    </fragment>
+    <fragment android:id="@+id/newCredentialFragment"
+              android:name="com.hyperclock.prashant.credentialmanager.newCredential.NewCredentialFragment"
+              android:label="NewCredentialFragment"/>
+    <fragment android:id="@+id/helpFragment" android:name="com.hyperclock.prashant.credentialmanager.help.HelpFragment"
+              android:label="fragment_help" tools:layout="@layout/fragment_help"/>
+    <fragment android:id="@+id/onBoardFragment"
+              android:name="com.hyperclock.prashant.credentialmanager.onboard.OnBoardFragment"
+              android:label="fragment_on_board" tools:layout="@layout/fragment_on_board">
+        <action android:id="@+id/action_onBoardFragment_to_homeFragment" app:destination="@id/homeFragment"/>
+    </fragment>
+    <fragment android:id="@+id/settingFragment"
+              android:name="com.hyperclock.prashant.credentialmanager.settings.SettingFragment"
+              android:label="fragment_setting" tools:layout="@layout/fragment_setting"/>
+</navigation>
