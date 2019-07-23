@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/navigation"
-            app:startDestination="@id/newCredentialFragment">
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/navigation"
+        app:startDestination="@id/onBoard_destination">
 
-    <fragment android:id="@+id/homeFragment"
-              android:name="com.hyperclock.prashant.credentialmanager.homeScreen.HomeFragment"
-              android:label="HomeFragment">
-        <action android:id="@+id/action_homeFragment_to_newCredentialFragment"
-                app:destination="@id/newCredentialFragment"/>
-        <action android:id="@+id/action_homeFragment_to_helpFragment" app:destination="@id/helpFragment"/>
-        <action android:id="@+id/action_homeFragment_to_settingFragment" app:destination="@id/settingFragment"/>
-    </fragment>
     <fragment
-            android:id="@+id/newCredentialFragment"
+            android:id="@+id/home_destination"
+            android:name="com.hyperclock.prashant.credentialmanager.homeScreen.HomeFragment"
+            android:label="HomeFragment">
+        <action android:id="@+id/action_homeFragment_to_newCredentialFragment" app:destination="@id/new_Credential_destination"/>
+        <action android:id="@+id/action_homeFragment_to_helpFragment" app:destination="@id/help_destination"/>
+        <action android:id="@+id/action_homeFragment_to_settingFragment" app:destination="@id/setting_destination"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/new_Credential_destination"
             android:name="com.hyperclock.prashant.credentialmanager.newCredential.NewCredentialFragment"
             android:label="NewCredentialFragment"/>
     <fragment
-            android:id="@+id/helpFragment"
+            android:id="@+id/help_destination"
             android:name="com.hyperclock.prashant.credentialmanager.help.HelpFragment"
             android:label="fragment_help"
             tools:layout="@layout/fragment_help"/>
     <fragment
-            android:id="@+id/onBoardFragment"
+            android:id="@+id/onBoard_destination"
             android:name="com.hyperclock.prashant.credentialmanager.onboard.OnBoardFragment"
             android:label="fragment_on_board"
             tools:layout="@layout/fragment_on_board">
-        <action
-                android:id="@+id/action_onBoardFragment_to_homeFragment"
-                app:destination="@id/homeFragment"/>
+        <action android:id="@+id/action_onBoard_destination_to_home_destination"
+                app:destination="@+id/home_destination"
+                app:popUpTo="@+id/navigation"
+                app:popEnterAnim="@anim/nav_default_enter_anim"/>
     </fragment>
-    <fragment android:id="@+id/settingFragment"
+
+    <fragment android:id="@+id/setting_destination"
               android:name="com.hyperclock.prashant.credentialmanager.settings.SettingFragment"
               android:label="fragment_setting"
               tools:layout="@layout/fragment_setting"/>
