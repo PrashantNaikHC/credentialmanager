@@ -2,29 +2,22 @@ package com.hyperclock.prashant.credentialmanager.onboard
 
 
 
-import android.app.Application
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
-
-
-//import androidx.appcompat.app.AppCompatActivity
-
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.hyperclock.prashant.credentialmanager.R
+import com.google.android.material.snackbar.Snackbar
 import com.hyperclock.prashant.credentialmanager.databinding.FragmentOnBoardBinding
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
 
 
 class OnBoardFragment : Fragment() {
@@ -32,10 +25,9 @@ class OnBoardFragment : Fragment() {
     private lateinit var binding : FragmentOnBoardBinding
     private lateinit var viewmodel : OnboardViewModel
 
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_on_board,container,false)
+        binding = DataBindingUtil.inflate(inflater,
+            com.hyperclock.prashant.credentialmanager.R.layout.fragment_on_board,container,false)
         viewmodel = ViewModelProviders.of(this).get(OnboardViewModel::class.java)
         binding.onboardViewmodelVariable = viewmodel
         binding.setLifecycleOwner(this)
@@ -48,8 +40,8 @@ class OnBoardFragment : Fragment() {
             }
             override fun onTextChanged(strings :CharSequence, a:Int, b:Int, c:Int) {
                 if(viewmodel.checkPassword(binding.entryPassword.text.toString())) {
-                    //hideSoftKeyboard(binding.textView2)
-
+                    removePhoneKeypad()
+                    Snackbar.make(activity!!.findViewById(android.R.id.content), getString(com.hyperclock.prashant.credentialmanager.R.string.login_message),Snackbar.LENGTH_SHORT).show()
                     findNavController().navigate(OnBoardFragmentDirections.actionOnBoardDestinationToHomeDestination())
                 }
             }
@@ -59,19 +51,21 @@ class OnBoardFragment : Fragment() {
             binding.hintText.text = pass.toString()
         })
 
-        //(activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions)
+        (activity as AppCompatActivity).supportActionBar?.title = getString(com.hyperclock.prashant.credentialmanager.R.string.login_string)
 
         return binding.root
     }
 
-    /*fun hideSoftKeyboard(view: View) {
-        if (view.requestFocus()) {
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.windowToken, 0)
-        }
-    }*/
+    fun removePhoneKeypad() {
+        val inputManager = view!!
+            .getContext()
+            .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-
-
+        val binder = view!!.getWindowToken()
+        inputManager.hideSoftInputFromWindow(
+            binder,
+            InputMethodManager.HIDE_NOT_ALWAYS
+        )
+    }
 }
 

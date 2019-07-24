@@ -2,5 +2,7 @@
     <string name="app_name">credential manager</string>
     <string name="new_credential_string">Add new credentials</string>
     <string name="help_string">manage your credentials</string>
+    <string name="login_message">Login successful</string>
+    <string name="login_string">Login</string>
 
 </resources>
