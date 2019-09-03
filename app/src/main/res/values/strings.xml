@@ -4,5 +4,7 @@
     <string name="help_string">manage your credentials</string>
     <string name="login_message">Login successful</string>
     <string name="login_string">Login</string>
+    <string name="add_credential_string">Add  Credential</string>
+    <string name="salt_string">Salt the password string ?</string>
 
 </resources>

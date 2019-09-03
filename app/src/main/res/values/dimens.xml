@@ -2,4 +2,5 @@
 <resources>
     <dimen name="default_margin">16dp</dimen>
     <dimen name="headline_string">30sp</dimen>
+    <dimen name="mini_padding">8dp</dimen>
 </resources>
