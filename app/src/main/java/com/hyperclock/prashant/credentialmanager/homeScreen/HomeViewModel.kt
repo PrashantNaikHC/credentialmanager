@@ -13,6 +13,4 @@ class HomeViewModel :ViewModel(){
     val navigateToSelectedCredential: LiveData<Credential>
          get() = _navigateToSelectedCredential
 
-
-
 }
