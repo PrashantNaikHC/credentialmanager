@@ -32,6 +32,7 @@
                 android:id="@+id/item_credential_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:credentialNameString="@{layout_cred}"
                 android:padding="@dimen/mini_padding"
                 tools:text="Ultimatx" />
 

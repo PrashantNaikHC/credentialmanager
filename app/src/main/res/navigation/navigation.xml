@@ -18,7 +18,11 @@
     <fragment
             android:id="@+id/new_Credential_destination"
             android:name="com.hyperclock.prashant.credentialmanager.newCredential.NewCredentialFragment"
-            android:label="NewCredentialFragment"/>
+            android:label="NewCredentialFragment">
+        <action
+                android:id="@+id/action_new_Credential_destination_to_home_destination"
+                app:destination="@id/home_destination" />
+    </fragment>
     <fragment
             android:id="@+id/help_destination"
             android:name="com.hyperclock.prashant.credentialmanager.help.HelpFragment"
