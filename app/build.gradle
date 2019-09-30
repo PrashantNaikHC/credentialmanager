@@ -8,7 +8,8 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.hyperclock.prashant.credentialmanager"
-        minSdkVersion 21
+        minSdkVersion 27
+
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -25,11 +26,19 @@ android {
     dataBinding {
         enabled = true
     }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version_kotlin"
+
+    // Biometrics
+    implementation 'androidx.biometric:biometric:1.0.0-beta02'
 
     // Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
@@ -64,5 +73,4 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-
 }

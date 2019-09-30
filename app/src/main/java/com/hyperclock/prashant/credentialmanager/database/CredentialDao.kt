@@ -36,6 +36,11 @@ interface CredentialDao {
     @Query("SELECT * FROM credentials_table WHERE id = :key")
     fun getSelectedCredentials(key: Int) : LiveData<Credential>
 
+    /**
+     * get a list of matching credentials for search
+     */
+    @Query("SELECT * FROM credentials_table WHERE account_column LIKE :selection")
+    fun findCredentials(selection : String) : List<Credential>
 
 
     /**

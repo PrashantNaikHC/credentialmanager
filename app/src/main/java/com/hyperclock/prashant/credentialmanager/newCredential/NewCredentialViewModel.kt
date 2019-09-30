@@ -8,10 +8,10 @@ import kotlinx.coroutines.*
 
 class NewCredentialViewModel(val database: CredentialDao, application: Application) : ViewModel(){
 
-    val WORDS = "[a-z]".toRegex()
-    val WORDS_CAPS = "[A-Z]".toRegex()
-    val NUMBERS = "[1-9]".toRegex()
-    val SPECIAL_CHARS = "[#|$|!|@|%|^|(|)|]".toRegex()
+    private val WORDS = "[a-z]".toRegex()
+    private val WORDS_CAPS = "[A-Z]".toRegex()
+    private val NUMBERS = "[1-9]".toRegex()
+    private val SPECIAL_CHARS = "[#|$|!|@|%|^|(|)|]".toRegex()
 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)

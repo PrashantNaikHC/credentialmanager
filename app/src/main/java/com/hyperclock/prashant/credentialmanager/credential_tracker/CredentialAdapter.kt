@@ -3,17 +3,16 @@ package com.hyperclock.prashant.credentialmanager.credential_tracker
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hyperclock.prashant.credentialmanager.database.Credential
 import com.hyperclock.prashant.credentialmanager.databinding.ListItemBinding
 
-class CredentialAdapter(val clicklistener: CredentialClickListener) : ListAdapter<Credential, CredentialAdapter.ViewHolder>(CredentialDiffCallback()) {
+class CredentialAdapter(val clicklistener: CredentialClickListener) : androidx.recyclerview.widget.ListAdapter<Credential, CredentialAdapter.ViewHolder>(CredentialDiffCallback()) {
 
     class ViewHolder private constructor(val binding : ListItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind (clicklistener: CredentialClickListener, item: Credential) {
             binding.layoutCred =item
-            binding.layoutClickListener = clicklistener
+            binding.layoutClick = clicklistener
             binding.executePendingBindings()
         }
 

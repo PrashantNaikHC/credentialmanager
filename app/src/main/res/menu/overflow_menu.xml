@@ -7,4 +7,18 @@
             android:icon="@android:drawable/ic_input_add"
             android:title="@string/add_credential_string"
             app:showAsAction="always" />
+
+    <item
+            android:id="@+id/delete_all_credential"
+            android:icon="@android:drawable/ic_delete"
+            android:title="@string/add_credential_string"
+            app:showAsAction="always" />
+
+    <item
+            android:id="@+id/search_credential"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="@string/add_credential_string"
+            app:actionViewClass="androidx.appcompat.widget.SearchView"
+            app:showAsAction="always" />
+
 </menu>

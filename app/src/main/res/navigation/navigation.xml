@@ -21,7 +21,8 @@
             android:label="NewCredentialFragment">
         <action
                 android:id="@+id/action_new_Credential_destination_to_home_destination"
-                app:destination="@id/home_destination" />
+                app:destination="@id/home_destination"
+                app:popUpTo="@+id/home_destination" />
     </fragment>
     <fragment
             android:id="@+id/help_destination"

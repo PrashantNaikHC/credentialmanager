@@ -9,51 +9,48 @@
                 name="layout_cred"
                 type="com.hyperclock.prashant.credentialmanager.database.Credential" />
         <variable
-                name="layout_clickListener"
+                name="layout_click"
                 type="com.hyperclock.prashant.credentialmanager.credential_tracker.CredentialClickListener"/>
     </data>
 
     <androidx.cardview.widget.CardView
             android:background="@color/cardview_dark_background"
-            android:layout_margin="@dimen/default_margin"
+            android:layout_margin="@dimen/mini_padding"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:elevation="@dimen/cardview_default_radius"
             app:cardCornerRadius="@dimen/cardview_default_radius">
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-
-        <TextView
-                android:id="@+id/item_credential_name"
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:credentialNameString="@{layout_cred}"
-                android:padding="@dimen/mini_padding"
-                tools:text="Ultimatx" />
+                android:orientation="vertical">
 
-        <TextView
-                android:id="@+id/item_expiry_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/mini_padding"
-                tools:text="will expire in 30 days" />
+            <TextView
+                    android:id="@+id/item_credential_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:credentialNameString="@{layout_cred}"
+                    android:padding="@dimen/mini_padding"
+                    tools:text="Ultimatx" />
 
-        <ProgressBar
-                android:id="@+id/item_progress_bar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="4"
-                android:padding="@dimen/mini_padding"
-                android:progress="2" />
+            <TextView
+                    android:id="@+id/item_expiry_date"
+                    android:layout_width="match_parent"
+                    app:credentialExpiryTime="@{layout_cred}"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/mini_padding"
+                    tools:text="will expire in 30 days" />
 
-
-    </LinearLayout>
+            <ProgressBar
+                    android:id="@+id/item_progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="4"
+                    android:padding="@dimen/mini_padding"
+                    android:progress="2" />
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 </layout>

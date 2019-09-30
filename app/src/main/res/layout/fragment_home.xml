@@ -16,8 +16,6 @@
 
         <androidx.recyclerview.widget.RecyclerView
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:itemCount="16"
                 tools:listitem="@layout/list_item"
                 android:id="@+id/credentials_grid"
                 android:layout_width="match_parent"

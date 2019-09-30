@@ -2,6 +2,7 @@ package com.hyperclock.prashant.credentialmanager.onboard
 
 
 
+import android.app.Application
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -20,11 +21,18 @@ import android.content.Context
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import com.hyperclock.prashant.credentialmanager.R
+import java.util.concurrent.Executor
 
 class OnBoardFragment : Fragment() {
 
     private lateinit var binding : FragmentOnBoardBinding
     private lateinit var viewmodel : OnboardViewModel
+    private lateinit var application : Application
+    private val executor = Executor { }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,
@@ -33,7 +41,7 @@ class OnBoardFragment : Fragment() {
         binding.onboardViewmodelVariable = viewmodel
         binding.setLifecycleOwner(this)
 
-
+        application = requireNotNull(this.activity).application
         binding.entryPassword.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(arg0:Editable) {
             }
@@ -42,7 +50,7 @@ class OnBoardFragment : Fragment() {
             override fun onTextChanged(strings :CharSequence, a:Int, b:Int, c:Int) {
                 if(viewmodel.checkPassword(binding.entryPassword.text.toString())) {
                     removePhoneKeypad()
-                    Snackbar.make(activity!!.findViewById(android.R.id.content), getString(com.hyperclock.prashant.credentialmanager.R.string.login_message),Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(activity!!.findViewById(android.R.id.content), getString(R.string.login_message),Snackbar.LENGTH_SHORT).show()
                     findNavController().navigate(OnBoardFragmentDirections.actionOnBoardDestinationToHomeDestination())
                 }
             }
@@ -51,30 +59,13 @@ class OnBoardFragment : Fragment() {
         viewmodel.randomString.observe(this, Observer { pass->
             //binding.hintText.text = pass.toString()
             val layout = binding.linearLayout
-
-            val colors = listOf(
-                android.R.color.holo_red_dark,
-                android.R.color.holo_blue_dark,
-                android.R.color.holo_orange_dark,
-                android.R.color.holo_purple,
-                android.R.color.holo_green_dark,
-                android.R.color.darker_gray,
-                android.R.color.holo_orange_light,
-                android.R.color.black,
-                android.R.color.holo_blue_bright,
-                android.R.color.holo_blue_bright
-            )
-
             for (i in 0..pass.size-1){
 
                 val progressBar = ProgressBar(activity, null, android.R.attr.progressBarStyleHorizontal)
                 progressBar.apply{
                     //scaleX = (pass.indexOf(i)*0.9).toFloat()
                     max = 10
-                    //setLayoutParams(ViewGroup.LayoutParams(layout.width, layout.height))
                     isIndeterminate = false
-                    setBackgroundColor(colors[i])
-                    //progressDrawable = resources.getDrawable(com.hyperclock.prashant.credentialmanager.R.drawable.circle)
                     progress = pass[i]
                     Log.d("OnBoardFragment","value is $i with progress $progress")
                 }
@@ -82,9 +73,56 @@ class OnBoardFragment : Fragment() {
             }
         })
 
+        val biometricManager = BiometricManager.from(application)
+        when (biometricManager.canAuthenticate()) {
+            BiometricManager.BIOMETRIC_SUCCESS ->
+                showBiometricPrompt()
+            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE ->
+                showText("No biometric features available on this device.")
+            BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE ->
+                showText("Biometric features are currently unavailable.")
+            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED ->
+                showText("The user hasn't associated any biometric credentials with their account.")
+        }
+
         (activity as AppCompatActivity).supportActionBar?.title = getString(com.hyperclock.prashant.credentialmanager.R.string.login_string)
 
         return binding.root
+    }
+
+    private fun showBiometricPrompt() {
+        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle(resources.getString(R.string.app_name))
+            .setSubtitle(resources.getString(R.string.biometric_login))
+            .setNegativeButtonText("Cancel")
+            .setConfirmationRequired(false)
+            .build()
+
+        val biometricPrompt = BiometricPrompt(this, executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(errorCode: Int,errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    Toast.makeText(application,"Authentication error: $errString", Toast.LENGTH_SHORT)
+                        .show()
+                    activity!!.finish()
+                }
+
+                override fun onAuthenticationSucceeded(
+                    result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    //val authenticatedCryptoObject: BiometricPrompt.CryptoObject? = result.getCryptoObject()
+                    Snackbar.make(activity!!.findViewById(android.R.id.content), getString(R.string.login_message),Snackbar.LENGTH_SHORT).show()
+                    findNavController().navigate(OnBoardFragmentDirections.actionOnBoardDestinationToHomeDestination())
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    Toast.makeText(application, "Authentication failed",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
+        biometricPrompt.authenticate(promptInfo)
     }
 
     fun removePhoneKeypad() {
@@ -98,5 +136,11 @@ class OnBoardFragment : Fragment() {
             InputMethodManager.HIDE_NOT_ALWAYS
         )
     }
+
+    fun showText(string: String){
+        Toast.makeText(activity,string,Toast.LENGTH_SHORT).show()
+    }
 }
+
+
 

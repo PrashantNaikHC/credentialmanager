@@ -6,5 +6,8 @@
     <string name="login_string">Login</string>
     <string name="add_credential_string">Add  Credential</string>
     <string name="salt_string">Salt the password string ?</string>
+    <string name="delete_message">All credentials have been deleted!</string>
+    <string name="search_hint">Search the credentials</string>
+    <string name="biometric_login">Use your biometric credentials to login</string>
 
 </resources>

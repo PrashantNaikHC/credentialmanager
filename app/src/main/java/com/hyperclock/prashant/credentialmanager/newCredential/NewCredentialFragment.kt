@@ -58,11 +58,12 @@ class NewCredentialFragment : Fragment() {
         })
 
         binding.floatingActionButton.setOnClickListener {
+
             val newCred = Credential(
                 0L,
-                binding.name.toString(),
-                binding.password.toString(),
-                10,
+                binding.name.text.toString(),
+                binding.password.text.toString(),
+                Integer.parseInt(binding.resetTime.text.toString()),
                 binding.link.toString()
             )
             viewModel.insertNewCred(newCred)
