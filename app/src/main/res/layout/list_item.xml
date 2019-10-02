@@ -22,6 +22,7 @@
             app:cardCornerRadius="@dimen/cardview_default_radius">
 
         <LinearLayout
+                android:onClick="@{()-> layout_click.onClick(layout_cred)}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">

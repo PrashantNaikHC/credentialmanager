@@ -21,14 +21,15 @@ class HomeViewModel(val database : CredentialDao,application : Application) : An
 
     private var currentCred = MutableLiveData<Credential?>()
 
-    //livedata for the navigation
-    private val _navigateToSelectedCredential = MutableLiveData<Long>()
+    private val _clickedCredential = MutableLiveData<Credential>()
 
-    val navigateToSelectedCredential: LiveData<Long>
-         get() = _navigateToSelectedCredential
+    val clickedCredential: LiveData<Credential>
+         get() = _clickedCredential
 
-    fun onCredentialClicked(id : Long){
-        _navigateToSelectedCredential.value = id
+
+
+    fun onCredentialClicked(credential : Credential){
+        _clickedCredential.value = credential
     }
 
     fun clearAllCred(){

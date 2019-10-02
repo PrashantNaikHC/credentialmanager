@@ -46,6 +46,6 @@ class CredentialDiffCallback : DiffUtil.ItemCallback<Credential>() {
 
 }
 
-class CredentialClickListener(val clickListener: (credentialId :Long) -> Unit){
-    fun onClick(cred : Credential) = clickListener(cred.id)
+class CredentialClickListener(val clickListener: (PassedCredential :Credential) -> Unit){
+    fun onClick(cred : Credential) = clickListener(cred)
 }

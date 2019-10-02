@@ -64,9 +64,10 @@ class HomeFragment : Fragment() {
             }
         })
 
-        credentialViewModel.navigateToSelectedCredential.observe(viewLifecycleOwner, Observer {cred->
+        credentialViewModel.clickedCredential.observe(viewLifecycleOwner, Observer {cred->
             cred?.let{
-                Toast.makeText(application,cred.toString(),Toast.LENGTH_SHORT).show()
+
+                Snackbar.make(activity!!.findViewById(android.R.id.content), cred.password,Snackbar.LENGTH_SHORT).show()
             }
         })
 
