@@ -10,7 +10,10 @@
             android:id="@+id/home_destination"
             android:name="com.hyperclock.prashant.credentialmanager.homeScreen.HomeFragment"
             android:label="HomeFragment">
-        <action android:id="@+id/action_homeFragment_to_newCredentialFragment" app:destination="@id/new_Credential_destination"/>
+        <action
+                android:id="@+id/action_homeFragment_to_newCredentialFragment"
+                app:destination="@id/new_Credential_destination"
+                app:popUpTo="@+id/home_destination" />
         <action android:id="@+id/action_homeFragment_to_helpFragment" app:destination="@id/help_destination"/>
         <action android:id="@+id/action_homeFragment_to_settingFragment" app:destination="@id/setting_destination"/>
     </fragment>

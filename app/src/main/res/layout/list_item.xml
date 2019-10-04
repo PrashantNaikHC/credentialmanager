@@ -14,7 +14,6 @@
     </data>
 
     <androidx.cardview.widget.CardView
-            android:background="@color/cardview_dark_background"
             android:layout_margin="@dimen/mini_padding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,17 +24,40 @@
                 android:onClick="@{()-> layout_click.onClick(layout_cred)}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/cardview_dark_background"
                 android:orientation="vertical">
 
-            <TextView
-                    android:id="@+id/item_credential_name"
+            <LinearLayout
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:credentialNameString="@{layout_cred}"
-                    android:padding="@dimen/mini_padding"
-                    tools:text="Ultimatx" />
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:textColor="@android:color/white"
+                        android:layout_weight="4"
+                        android:id="@+id/item_credential_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:credentialNameString="@{layout_cred}"
+                        android:padding="@dimen/mini_padding"
+                        tools:text="Ultimatx" />
+
+                <ImageView
+
+                        android:layout_gravity="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_lock_idle_lock" />
+
+            </LinearLayout>
+
+
 
             <TextView
+                    android:fontFamily="sans-serif-condensed-light"
+                    android:textColor="@android:color/white"
                     android:id="@+id/item_expiry_date"
                     android:layout_width="match_parent"
                     app:credentialExpiryTime="@{layout_cred}"
@@ -48,6 +70,7 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:credentialHealthMeter="@{layout_cred}"
                     android:max="4"
                     android:padding="@dimen/mini_padding"
                     android:progress="2" />

@@ -9,5 +9,10 @@
     <string name="delete_message">All credentials have been deleted!</string>
     <string name="search_hint">Search the credentials</string>
     <string name="biometric_login">Use your biometric credentials to login</string>
+    <string name="modify">modify</string>
+    <string name="proceed">Okay</string>
+    <string name="cancel">Cancel</string>
+    <string name="alert_dialog_message">Do you want to delete all credentials?</string>
+    <string name="alert_dialog_title">Delete</string>
 
 </resources>
