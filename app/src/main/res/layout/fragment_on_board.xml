@@ -75,5 +75,17 @@
                 android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/entry_password_container"
                 android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="@+id/progress_bar">
         </LinearLayout>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fingerprint_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/default_margin"
+                android:src="@drawable/baseline_fingerprint_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear_layout" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

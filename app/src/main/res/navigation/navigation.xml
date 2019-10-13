@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/navigation"
-        app:startDestination="@id/home_destination">
+        app:startDestination="@id/onBoard_destination">
 
     <fragment
             android:id="@+id/home_destination"
@@ -37,10 +37,12 @@
             android:name="com.hyperclock.prashant.credentialmanager.onboard.OnBoardFragment"
             android:label="fragment_on_board"
             tools:layout="@layout/fragment_on_board">
-        <action android:id="@+id/action_onBoard_destination_to_home_destination"
+        <action
+                android:id="@+id/action_onBoard_destination_to_home_destination"
                 app:destination="@+id/home_destination"
-                app:popUpTo="@+id/navigation"
-                app:popEnterAnim="@anim/nav_default_enter_anim"/>
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:popEnterAnim="@anim/nav_default_enter_anim"
+                app:popUpTo="@+id/navigation" />
     </fragment>
 
     <fragment android:id="@+id/setting_destination"
