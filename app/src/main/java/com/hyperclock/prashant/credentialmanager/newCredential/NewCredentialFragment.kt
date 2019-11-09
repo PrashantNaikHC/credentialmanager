@@ -62,6 +62,7 @@ class NewCredentialFragment : Fragment() {
             val newCred = Credential(
                 0L,
                 binding.name.text.toString(),
+                System.currentTimeMillis(),
                 binding.password.text.toString(),
                 Integer.parseInt(binding.resetTime.text.toString()),
                 binding.link.toString()

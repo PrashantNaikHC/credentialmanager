@@ -12,6 +12,9 @@ data class Credential (
     @ColumnInfo(name = "account_column")
     var account : String,
 
+    @ColumnInfo(name = "time_column")
+    var time : Long,
+
     @ColumnInfo(name = "password_column")
     var password : String,
 

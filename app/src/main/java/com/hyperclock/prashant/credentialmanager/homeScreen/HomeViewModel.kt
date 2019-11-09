@@ -26,8 +26,6 @@ class HomeViewModel(val database : CredentialDao,application : Application) : An
     val clickedCredential: LiveData<Credential>
          get() = _clickedCredential
 
-
-
     fun onCredentialClicked(credential : Credential){
         _clickedCredential.value = credential
     }
@@ -52,14 +50,11 @@ class HomeViewModel(val database : CredentialDao,application : Application) : An
         return values
     }
 
-
     suspend fun searchCredential(text: String) : List<Credential> {
         return withContext(Dispatchers.Main) {
             database.findCredentials(text)
         }
     }
-
-
 
     override fun onCleared() {
         super.onCleared()
